@@ -1,2 +1,1 @@
 # bquiz01
-training
