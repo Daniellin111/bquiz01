@@ -45,19 +45,47 @@ public function all(...$arg){
   return $this->pdo->query($sql)->fetchAll();
 
 }
+
+public function count(...$arg){
+  $sql="select count(*) from $this->table ";
+  
+  if(isset($arg[0])){
+      if(is_array($arg[0])){
+          
+        foreach($arg[0] as $key => $value){
+              $tmp[]=sprintf("`%s`='%s'",$key,$value);
+          }
+              $sql=$sql . " where " . implode(" && ",$tmp);
+      }else{
+
+        $sql=$sql . $arg[0];
+      }
+
+      if(isset($arg[1])){
+          $sql=$sql . $arg[1];
+      }
+
+  }
+
+  // echo $sql;
+  return $this->pdo->query($sql)->fetchColumn();
+
 }
+
+}
+
 
 
 
 $admin = new DB ("admin");
 echo "<pre>";
-print_r($admin->all());
+print_r($admin->all(['acc'=>'root' , 'pw'=>'1234' ]));
 echo "</pre>";
 
-echo "<pre>";
-print_r($admin->all(" where acc='root' "));
-echo "</pre>";
+// echo "<pre>";
+// print_r($admin->all(" where acc='root' "));
+// echo "</pre>";
 
-echo "<pre>";
-print_r($admin->all(" where `pw`='1234'","order by `id` DESC"));
-echo "</pre>";
+// echo "<pre>";
+// print_r($admin->all(" where `pw`='1234'","order by `id` DESC"));
+// echo "</pre>";
