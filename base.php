@@ -133,7 +133,9 @@ class DB {                                            ##資料庫
           if (isset($array['id'])){
             //update
             foreach($array as $key => $value){
-              $tmp[] = sprintf("`%s`='%s'",$key,$value);
+              if ($key!='id') {
+                $tmp[] = sprintf("`%s`='%s'",$key,$value);
+              }
           }
 
             $sql="update $this->table set".implode(',',$tmp). "where `id` = '{$array['id']}'";
