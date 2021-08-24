@@ -20,7 +20,14 @@ class DB {                                            ##資料庫
         if (isset($arg)) {
             ##位置0是不是陣列
           if(is_array($arg[0])){
-              echo "處理陣列";
+              
+                //["欄位"=>"值","欄位"=>"值"]
+                //where `欄位` = '值' && `欄位` = `值`
+            foreach($arg[0] as $key => $value){
+                $tmp[] = sprintf("`%s`='%s'",$key,$value);
+            }
+              
+              $sql = $sql . " where " . implode(" && ",$tmp);
           }  
           else {
 
@@ -33,16 +40,14 @@ class DB {                                            ##資料庫
               $sql = $sql . $arg[1];
           }
 
-
         } 
-        
         
         // echo $sql;
         return $this->pdo->query($sql)->fetchAll();
       }
 };
-      ##串資料表
-$db = new 
+      
+
 
 
 
