@@ -103,6 +103,31 @@ class DB {                                            ##資料庫
         echo $sql;
         return $this->pdo->query($sql)->fetch(PDO::FETCH_ASSOC);
       }
+
+
+      public function del($id) {
+        $sql="delete from $this->table ";
+
+            ##位置0是不是陣列
+          if(is_array($id)){
+              
+                //["欄位"=>"值","欄位"=>"值"]
+                //where `欄位` = '值' && `欄位` = `值`
+            foreach($id as $key => $value){
+                $tmp[] = sprintf("`%s`='%s'",$key,$value);
+            }
+              
+              $sql = $sql . " where " . implode(" && ",$tmp);
+          }  
+          else {
+
+              //當它是字串
+              $sql = $sql . "where `id`='$id'";
+            }
+          
+        echo $sql;
+        return $this->pdo->exec($sql);
+      }
 };
       
 
