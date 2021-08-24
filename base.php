@@ -45,6 +45,40 @@ class DB {                                            ##資料庫
         // echo $sql;
         return $this->pdo->query($sql)->fetchAll();
       }
+
+
+      public function count(...$arg) {
+        $sql="select count(*) from $this->table ";
+
+            ##判斷有東西
+        if (isset($arg)) {
+            ##位置0是不是陣列
+          if(is_array($arg[0])){
+              
+                //["欄位"=>"值","欄位"=>"值"]
+                //where `欄位` = '值' && `欄位` = `值`
+            foreach($arg[0] as $key => $value){
+                $tmp[] = sprintf("`%s`='%s'",$key,$value);
+            }
+              
+              $sql = $sql . " where " . implode(" && ",$tmp);
+          }  
+          else {
+
+              //當它是字串
+              $sql = $sql . $arg[0];
+            }
+          
+          if (isset($arg[1])) {
+              //當它是字串
+              $sql = $sql . $arg[1];
+          }
+
+        } 
+        
+        // echo $sql;
+        return $this->pdo->query($sql)->fetchColumn();
+      }
 };
       
 
