@@ -128,6 +128,29 @@ class DB {                                            ##資料庫
         echo $sql;
         return $this->pdo->exec($sql);
       }
+
+      public function save($array) {
+          if (isset($array['id'])){
+            //update
+            foreach($array as $key => $value){
+              $tmp[] = sprintf("`%s`='%s'",$key,$value);
+          }
+
+            $sql="update $this->table set".implode(',',$tmp). "where `id` = '{$array['id']}'";
+          } 
+          else{
+            //inseret
+
+
+            $sql = "insert into $this->table () values()";
+          }
+
+          return $this->pdo->exec($sql);
+      }
+
+
+
+
 };
       
 
