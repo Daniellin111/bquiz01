@@ -6,7 +6,7 @@ class DB {                                            ##資料庫
       private $password='12345';
       private $table;
       private $pdo;
-
+                      ##建構式
       public function __construct($table){
         $this->table=$table;
         $this->pdo=new PDO($this->dsn,$this->root,$this->password);
@@ -16,9 +16,30 @@ class DB {                                            ##資料庫
       public function all(...$arg) {
         $sql="select * from $this->table ";
 
+            ##判斷有東西
+        if (isset($arg)) {
+            ##位置0是不是陣列
+          if(is_array($arg[0])){
+              echo "處理陣列";
+          }  
+          else {
+
+              //當它是字串
+              $sql = $sql . $arg[0];
+            }
+          
+          if (isset($arg[1])) {
+              //當它是字串
+              $sql = $sql . $arg[1];
+          }
+
+
+        } 
+        
+        
+        // echo $sql;
         return $this->pdo->query($sql)->fetchAll();
       }
-
 };
       ##串資料表
 $db = new 
