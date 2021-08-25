@@ -144,9 +144,12 @@ class DB {                                            ##資料庫
             //inseret
 
 
-            $sql = "insert into $this->table () values()";
+            $sql = "insert into $this->table 
+            (`".implode("`,`",array_keys($array))."`) values
+            ('".implode("','",$array)."')";
           }
-
+          
+          echo $sql;
           return $this->pdo->exec($sql);
       }
 
