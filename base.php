@@ -156,7 +156,11 @@ class DB {                                            ##資料庫
 
 
 
-};
+}
+
+function to($url) {
+    header("location:".$url);
+}
       
 
 
