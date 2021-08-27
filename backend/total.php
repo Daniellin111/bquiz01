@@ -1,5 +1,5 @@
 <div style="width:99%; height:87%; margin:auto; overflow:auto; border:#666 1px solid;">
-					<p class="t cent botli">動畫圖片管理</p>
+					<p class="t cent botli"><?=$ts[$do] ?></p>
 					<form method="post" target="back" action="?do=tii">
 						<table width="100%">
 							<tbody>

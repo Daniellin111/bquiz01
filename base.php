@@ -1,4 +1,40 @@
 <?php 
+session_start();
+date_default_timezone_set("Asia/Taipei");
+//設定後台的抬頭文字
+$ts=[
+        "title"=>"網站標題管理",
+        "ad"=>"動態文字廣告管理",
+        "mvim"=>"動畫圖片管理",
+        "image"=>"校園映像資料管理",
+        "menu"=>"選單管理",
+        "news"=>"最新消息資料管理",
+        "total"=>"進站總人數管理",
+        "admin"=>"管理者帳號管理",
+        "bottom"=>"頁尾版權資料管理",
+];
+##新增
+$as=[
+        "title"=>"新增網站標題",
+        "ad"=>"新增動態文字廣告",
+        "mvim"=>"新增動畫圖片",
+        "image"=>"新增校園映像資料",
+        "news"=>"新增最新消息資料",
+        "admin"=>"新增管理者帳號",
+        "menu"=>"新增選單",
+];
+##headerstring
+$hs=[
+  "title"=>"網站標題",
+  "ad"=>"動態文字廣告",
+  "mvim"=>"動畫圖片",
+  "image"=>"校園映像資料",
+  "news"=>"最新消息資料",
+  "admin"=>"管理者帳號",
+  "menu"=>"選單",
+];
+
+        
 
 class DB {                                            ##資料庫
       private $dsn="mysql:host=localhost;charset=utf8;dbname=db01";
@@ -161,9 +197,3 @@ class DB {                                            ##資料庫
 function to($url) {
     header("location:".$url);
 }
-      
-
-
-
-
-?>
