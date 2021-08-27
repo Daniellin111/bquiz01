@@ -136,7 +136,7 @@ class DB {                                            ##資料庫
               $sql = $sql . "where `id`='$id'";
             }
           
-        echo $sql;
+        // echo $sql;
         return $this->pdo->query($sql)->fetch(PDO::FETCH_ASSOC);
       }
 
@@ -197,3 +197,8 @@ class DB {                                            ##資料庫
 function to($url) {
     header("location:".$url);
 }
+
+$Total=new DB('total');
+
+
+?>
